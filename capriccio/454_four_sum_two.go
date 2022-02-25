@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func fourSumCount(nums1 []int, nums2 []int, nums3 []int, nums4 []int) int {
 	// The key of map is to store the sum of two, the value is the number of times.

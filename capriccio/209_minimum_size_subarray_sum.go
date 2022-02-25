@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func minSubArrayLen(target int, nums []int) int {
 	result := 100001

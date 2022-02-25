@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func detectCycle(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil || head.Next.Next == nil {

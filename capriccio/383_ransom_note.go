@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func canConstruct(ransomNote string, magazine string) bool {
 	store := make(map[rune]int)

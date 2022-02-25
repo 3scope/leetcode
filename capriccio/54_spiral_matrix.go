@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func spiralOrder(matrix [][]int) []int {
 	if matrix == nil {

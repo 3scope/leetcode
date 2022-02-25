@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func isHappy(n int) bool {
 	if getSum(n) == 1 || n == 1 {

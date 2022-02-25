@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func sortedSquares(nums []int) []int {
 	i, j := 0, len(nums)-1

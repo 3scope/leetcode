@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func generateMatrix(n int) [][]int {
 	result := make([][]int, n)

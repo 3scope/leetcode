@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func reverseStr(s string, k int) string {
 	result := []rune(s)

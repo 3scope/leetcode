@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func twoSum(nums []int, target int) []int {
 	store := make(map[int]int)

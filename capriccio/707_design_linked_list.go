@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 type MyLinkedList struct {
 	Head   *Node
@@ -11,13 +11,13 @@ type Node struct {
 	Next *Node
 }
 
-func Constructor() MyLinkedList {
-	return MyLinkedList{
-		Head:   new(Node),
-		Tail:   nil,
-		Length: 0,
-	}
-}
+// func Constructor() MyLinkedList {
+// 	return MyLinkedList{
+// 		Head:   new(Node),
+// 		Tail:   nil,
+// 		Length: 0,
+// 	}
+// }
 
 func (this *MyLinkedList) Get(index int) int {
 	if index >= this.Length || index < 0 {

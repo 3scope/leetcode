@@ -1,4 +1,4 @@
-package capriccio
+package main
 
 func intersection(nums1 []int, nums2 []int) []int {
 	if len(nums1) == 0 || len(nums2) == 0 {
