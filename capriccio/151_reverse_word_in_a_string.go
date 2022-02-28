@@ -19,6 +19,7 @@ func reverseWords(s string) string {
 }
 
 // Use byte slice to reverse.
+
 func reverseWordsInSentance(s string) string {
 	if s == "" {
 		return ""
@@ -36,13 +37,12 @@ func reverseWordsInSentance(s string) string {
 	for i := 1; i < len(temp); i++ {
 		if temp[i] == temp[i-1] && temp[i] == ' ' {
 			temp = append(temp[:i-1], temp[i:]...)
+			// Store the original index.
 			i--
 		}
 	}
 	// Totally reverse.
-	for i, j := 0, len(temp)-1; i < j; i, j = i+1, j-1 {
-		temp[i], temp[j] = temp[j], temp[i]
-	}
+	reverseByte(temp, 0, len(temp)-1)
 	// Reverse words.
 	for i := 0; i < len(temp); {
 		j := i
@@ -51,12 +51,17 @@ func reverseWordsInSentance(s string) string {
 				break
 			}
 		}
-		start := j
-		j--
-		for ; i < j; i, j = i+1, j-1 {
-			temp[i], temp[j] = temp[j], temp[i]
-		}
-		i = start + 1
+		reverseByte(temp, i, j-1)
+		// The variable "j" is space.
+		i = j + 1
 	}
 	return string(temp)
+}
+
+func reverseByte(data []byte, i, j int) {
+	for i < j {
+		data[i], data[j] = data[j], data[i]
+		i++
+		j--
+	}
 }
