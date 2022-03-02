@@ -18,7 +18,7 @@ func spiralOrder(matrix [][]int) []int {
 		for j := i; j < height-i-1; j++ {
 			result = append(result, matrix[j][width-i-1])
 		}
-		// Buttom edge.
+		// Bottom edge.
 		for j := width - i - 1; j > i; j-- {
 			result = append(result, matrix[height-i-1][j])
 		}

@@ -14,8 +14,3 @@ func removeElement(nums []int, val int) int {
 	}
 	return slow
 }
-
-func main() {
-	test := []int{3, 2, 2, 3}
-	println(removeElement(test, 3))
-}

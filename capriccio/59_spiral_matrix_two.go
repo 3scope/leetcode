@@ -19,7 +19,7 @@ func generateMatrix(n int) [][]int {
 			result[j][n-i-1] = count
 			count++
 		}
-		// Buttom edge.
+		// Bottom edge.
 		for j := n - i - 1; j > i; j-- {
 			result[n-i-1][j] = count
 			count++
