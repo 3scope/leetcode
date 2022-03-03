@@ -1,6 +1,9 @@
 package main
 
 func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 	result := 0
 	queue := make([]*TreeNode, 1)
 	queue[0] = root
@@ -18,4 +21,6 @@ func maxDepth(root *TreeNode) int {
 			}
 		}
 	}
+
+	return result
 }

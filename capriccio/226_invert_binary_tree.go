@@ -29,4 +29,6 @@ func invertTreeIteration(root *TreeNode) *TreeNode {
 		}
 		cur.Left, cur.Right = cur.Right, cur.Left
 	}
+
+	return root
 }
