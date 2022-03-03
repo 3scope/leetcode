@@ -55,17 +55,13 @@ func topKFrequent(nums []int, k int) []int {
 		frequence[nums[i]]++
 	}
 	result := make([]int, 0, len(frequence))
-	for k, _ := range frequence {
+	for k := range frequence {
 		result = append(result, k)
 	}
+	// The value of result[i] is the key of map.
 	sort.Slice(result, func(i, j int) bool {
 		return frequence[result[i]] > frequence[result[j]]
 	})
 
 	return result[:k]
-}
-
-func main() {
-	nums := []int{3, 0, 1, 0}
-	topKFrequentUseingHeap(nums, 1)
 }

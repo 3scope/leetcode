@@ -1,19 +1,19 @@
 package main
 
 type MyLinkedList struct {
-	Head   *Node
-	Tail   *Node
+	Head   *ListNode
+	Tail   *ListNode
 	Length int
 }
 
-type Node struct {
+type ListNode struct {
 	Val  int
-	Next *Node
+	Next *ListNode
 }
 
 // func Constructor() MyLinkedList {
 // 	return MyLinkedList{
-// 		Head:   new(Node),
+// 		Head:   new(ListNode),
 // 		Tail:   nil,
 // 		Length: 0,
 // 	}
@@ -31,7 +31,7 @@ func (this *MyLinkedList) Get(index int) int {
 }
 
 func (this *MyLinkedList) AddAtHead(val int) {
-	node := new(Node)
+	node := new(ListNode)
 	node.Val = val
 	node.Next = this.Head.Next
 	this.Head.Next = node
@@ -42,7 +42,7 @@ func (this *MyLinkedList) AddAtHead(val int) {
 }
 
 func (this *MyLinkedList) AddAtTail(val int) {
-	node := new(Node)
+	node := new(ListNode)
 	node.Val = val
 	if this.Length == 0 {
 		this.AddAtHead(val)
@@ -57,7 +57,7 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 	if index == this.Length {
 		this.AddAtTail(val)
 	} else if index < this.Length && index >= 0 {
-		node := new(Node)
+		node := new(ListNode)
 		node.Val = val
 		pre := this.Head
 		for ; index > 0; index-- {
