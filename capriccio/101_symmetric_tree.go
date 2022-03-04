@@ -25,23 +25,23 @@ func isSymmetric(root *TreeNode) bool {
 	return true
 }
 
-func main() {
-	nodeIntSlice := []int{1, 2, 2, 3, 4, 4, 3}
-	node := make([]*TreeNode, len(nodeIntSlice))
-	for i := 0; i < len(nodeIntSlice); i++ {
-		cur := new(TreeNode)
-		cur.Val = nodeIntSlice[i]
-		node[i] = cur
-	}
-	// Use node slice to build tree.
-	for i := 0; i < len(node); i++ {
-		if 2*i+1 >= len(node) {
-			break
-		}
-		node[i].Left = node[2*i+1]
-		if 2*i+2 < len(node) {
-			node[i].Right = node[2*i+2]
-		}
-	}
-	isSymmetric(node[0])
-}
+// func main() {
+// 	nodeIntSlice := []int{1, 2, 2, 3, 4, 4, 3}
+// 	node := make([]*TreeNode, len(nodeIntSlice))
+// 	for i := 0; i < len(nodeIntSlice); i++ {
+// 		cur := new(TreeNode)
+// 		cur.Val = nodeIntSlice[i]
+// 		node[i] = cur
+// 	}
+// 	// Use node slice to build tree.
+// 	for i := 0; i < len(node); i++ {
+// 		if 2*i+1 >= len(node) {
+// 			break
+// 		}
+// 		node[i].Left = node[2*i+1]
+// 		if 2*i+2 < len(node) {
+// 			node[i].Right = node[2*i+2]
+// 		}
+// 	}
+// 	isSymmetric(node[0])
+// }

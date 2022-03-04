@@ -13,9 +13,10 @@ func maxDepthNAry(root *Node) int {
 		for i := 0; i < size; i++ {
 			cur := queue[0]
 			queue = queue[1:]
-			if len(cur.Children) {
+			if len(cur.Children) > 0 {
 				queue = append(queue, cur.Children...)
 			}
 		}
 	}
+	return depth
 }
