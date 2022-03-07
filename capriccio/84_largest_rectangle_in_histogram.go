@@ -6,7 +6,7 @@ func largestRectangleArea(heights []int) int {
 	} else if len(heights) == 1 {
 		return heights[0]
 	}
-	// Convert all cases to "big small big".
+	// Convert all cases to "small big small".
 	temp := []int{0}
 	heights = append(temp, heights...)
 	heights = append(heights, 0)
@@ -15,12 +15,10 @@ func largestRectangleArea(heights []int) int {
 	stack := make([]int, 1)
 	stack[0] = 0
 	for i := 1; i < len(heights); i++ {
-		if heights[i] == heights[stack[len(stack)-1]] {
-			stack[len(stack)-1]++
-		} else if heights[i] > heights[stack[len(stack)-1]] {
+		if heights[i] >= heights[stack[len(stack)-1]] {
 			stack = append(stack, i)
 		} else {
-			for len(stack) > 2 {
+			for len(stack) >= 2 {
 				middle := stack[len(stack)-1]
 				if heights[i] > heights[middle] {
 					break
@@ -37,6 +35,8 @@ func largestRectangleArea(heights []int) int {
 					}
 				}()
 			}
+			stack = append(stack, i)
 		}
 	}
+	return result
 }
