@@ -1,16 +1,15 @@
 package main
 
+// The essence is an arrangement problem.
 func climbStairs(n int) int {
-	if n == 1 || n == 2 {
-		return n
+	dp := make([]int, n+1)
+	dp[0] = 1
+	for j := 1; j <= n; j++ {
+		for i := 1; i <= 2; i++ {
+			if j-i >= 0 {
+				dp[j] += dp[j-i]
+			}
+		}
 	}
-	slow := 1
-	fast := 2
-	result := 0
-	for i := 3; i <= n; i++ {
-		result = slow + fast
-		slow = fast
-		fast = result
-	}
-	return result
+	return dp[n]
 }
