@@ -33,6 +33,7 @@ func trap(height []int) int {
 				w := i - leftHeight - 1
 				result += h * w
 			}
+
 			for len(stack) > 0 && height[stack[len(stack)-1]] < height[i] {
 				stack = stack[:len(stack)-1]
 			}
