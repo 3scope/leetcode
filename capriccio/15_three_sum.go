@@ -27,9 +27,11 @@ func threeSum(nums []int) [][]int {
 				result = append(result, []int{number1, nums[left], nums[right]})
 				left++
 				right--
+				// Left pointer deduplication.
 				for left < right && nums[left-1] == nums[left] {
 					left++
 				}
+				// Right pointer deduplication.
 				for left < right && nums[right+1] == nums[right] {
 					right--
 				}

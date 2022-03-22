@@ -4,6 +4,13 @@ func minSubArrayLen(target int, nums []int) int {
 	result := 100001
 	length := len(nums)
 	i, j := 0, 0
+	min := func(x, y int) int {
+		if x > y {
+			return y
+		} else {
+			return x
+		}
+	}
 	for j < length {
 		sum := 0
 		for index := i; index <= j; index++ {
@@ -20,12 +27,4 @@ func minSubArrayLen(target int, nums []int) int {
 		return 0
 	}
 	return result
-}
-
-func min(x, y int) int {
-	if x > y {
-		return y
-	} else {
-		return x
-	}
 }

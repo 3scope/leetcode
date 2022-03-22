@@ -4,6 +4,13 @@ func spiralOrder(matrix [][]int) []int {
 	if matrix == nil {
 		return nil
 	}
+	min := func(x, y int) int {
+		if x > y {
+			return y
+		} else {
+			return x
+		}
+	}
 	height := len(matrix)
 	width := len(matrix[0])
 	level := min(height, width) / 2
