@@ -2,6 +2,11 @@ package main
 
 func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
 	// Termination condition.
+	if root1 == nil && root2 == nil {
+		return nil
+	}
+
+	// Preorder traversal.
 	if root1 == nil {
 		return root2
 	}

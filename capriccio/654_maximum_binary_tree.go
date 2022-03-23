@@ -10,6 +10,7 @@ func constructMaximumBinaryTree(nums []int) *TreeNode {
 			maxIndex = i
 		}
 	}
+	// Preorder traversal.
 	leftNums := nums[:maxIndex]
 	rightNums := nums[maxIndex+1:]
 	root := new(TreeNode)

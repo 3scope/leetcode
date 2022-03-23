@@ -11,8 +11,8 @@ func findItinerary(tickets [][]string) []string {
 	plan := make(map[string]map[string]int)
 	count := 1
 	for i := 0; i < len(tickets); i++ {
-		if m, ok := plan[tickets[i][0]]; !ok {
-			m = make(map[string]int)
+		if _, ok := plan[tickets[i][0]]; !ok {
+			m := make(map[string]int)
 			plan[tickets[i][0]] = m
 		}
 		plan[tickets[i][0]][tickets[i][1]]++

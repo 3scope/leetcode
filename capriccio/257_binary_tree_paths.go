@@ -14,8 +14,10 @@ func binaryTreePaths(root *TreeNode) []string {
 }
 
 func traversalRecursion(root *TreeNode, path *[]*TreeNode, result *[]string) {
-	*path = append((*path), root)
 	if root.Left == nil && root.Right == nil {
+		// Add node itself.
+		*path = append((*path), root)
+
 		pathString := strconv.Itoa((*path)[0].Val)
 		for i := 1; i < len(*path); i++ {
 			pathString += "->"
@@ -25,10 +27,12 @@ func traversalRecursion(root *TreeNode, path *[]*TreeNode, result *[]string) {
 	}
 
 	if root.Left != nil {
+		*path = append((*path), root)
 		traversalRecursion(root.Left, path, result)
 		*path = (*path)[:len(*path)-1]
 	}
 	if root.Right != nil {
+		*path = append((*path), root)
 		traversalRecursion(root.Right, path, result)
 		*path = (*path)[:len(*path)-1]
 	}

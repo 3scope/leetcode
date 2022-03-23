@@ -21,10 +21,10 @@ func invertTreeIteration(root *TreeNode) *TreeNode {
 	for len(stack) > 0 {
 		cur := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		if cur.Left != nil {
+		if cur.Right != nil {
 			stack = append(stack, cur.Left)
 		}
-		if cur.Right != nil {
+		if cur.Left != nil {
 			stack = append(stack, cur.Right)
 		}
 		cur.Left, cur.Right = cur.Right, cur.Left
