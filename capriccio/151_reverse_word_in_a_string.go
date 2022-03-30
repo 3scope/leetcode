@@ -4,6 +4,7 @@ import "strings"
 
 func reverseWords(s string) string {
 	temp := strings.Split(s, " ")
+	// Get all worlds.
 	noNullTemp := make([]string, 0)
 	for _, value := range temp {
 		if value != "" {
@@ -19,7 +20,6 @@ func reverseWords(s string) string {
 }
 
 // Use byte slice to reverse.
-
 func reverseWordsInSentance(s string) string {
 	if s == "" {
 		return ""
