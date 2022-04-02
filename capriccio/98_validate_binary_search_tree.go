@@ -27,24 +27,6 @@ func isValidBSTRecursion(root *TreeNode, pre *int) bool {
 	return left && right
 }
 
-func main() {
-	nodeArray := []int{1, 1}
-	nodeList := make([]*TreeNode, len(nodeArray))
-	for i := 0; i < len(nodeArray); i++ {
-		node := new(TreeNode)
-		node.Val = nodeArray[i]
-		nodeList[i] = node
-	}
-
-	for i := 0; 2*i+1 < len(nodeList); i++ {
-		nodeList[i].Left = nodeList[2*i+1]
-		if 2*i+2 < len(nodeList) {
-			nodeList[i].Right = nodeList[2*i+2]
-		}
-	}
-	isValidBST(nodeList[0])
-}
-
 func isValidBSTIteration(root *TreeNode) bool {
 	if root == nil {
 		return true

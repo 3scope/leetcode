@@ -5,6 +5,7 @@ func findTargetSumWays(nums []int, target int) int {
 	for i := 0; i < len(nums); i++ {
 		sum += nums[i]
 	}
+	// Such as target equals is minus 200, and sum is 100.
 	if target > sum || target < -sum {
 		// Have no solution.
 		return 0
@@ -13,6 +14,7 @@ func findTargetSumWays(nums []int, target int) int {
 		return 0
 	}
 
+	// Because array nums is positive, "t" is greater or equals to zero.
 	t := (target + sum) / 2
 	dp := make([]int, t+1)
 	dp[0] = 1

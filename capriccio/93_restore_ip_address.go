@@ -14,7 +14,7 @@ func restoreIpAddresses(s string) []string {
 }
 
 func restoreIpAddressesBackTracking(s string, startIndex int, result *[]string, temp *[]string) {
-	if startIndex >= len(s) && len(*temp) == 4 {
+	if startIndex == len(s) && len(*temp) == 4 {
 		*result = append(*result, strings.Join(*temp, "."))
 		return
 	}
