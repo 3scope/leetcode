@@ -42,12 +42,13 @@ func GetPrefixNext(pattern string) []int {
 	// Next 数组即是前缀表（最长相等前后缀表，前缀和后缀都不包括自身），存储着子串最长相等前后缀的长度。
 	prefixNext[0] = 0
 	// 求 Next 数组的过程，本质上是对自身进行模式匹配。
-	// 使用变量 i 控制子串长度，同时 i 还是子串*后缀*的最后一个字符=>  abc ab
-	// 														   ab cab
+	// 使用变量 i 遍历整个模式串，同时 i 还是子串*后缀*的最后一个字符=>  abc ab
+	// 														   	    ab cab
 	// 此时 len(pattern) = 5, i = 4，最长相等前后缀是 ab，后缀的最后一个字符即为 pattern[i] = b。
 	// 变量 j 是*前缀*的最后一个字符，因此可以代表*最长相等前后缀长度*，它和 KMP 算法中的 j 的作用是一致的，是模式串中的指针，此时 j = 1, patttern[j] = b
-	var i, j int
-	for i = 1; i < len(pattern); {
+	i := 1
+	j := 0
+	for i < len(pattern) {
 		if pattern[i] == pattern[j] {
 			prefixNext[i] = j + 1
 			i++

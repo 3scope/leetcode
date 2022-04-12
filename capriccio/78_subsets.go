@@ -8,19 +8,17 @@ func subsets(nums []int) [][]int {
 	return result
 }
 
-func subsetsBacktracking(nums []int, startIndex int, result *[][]int, temp *[]int) {
-	new := make([]int, len(*temp))
-	for i := 0; i < len(*temp); i++ {
-		new[i] = (*temp)[i]
-	}
-	*result = append(*result, new)
+func subsetsBacktracking(nums []int, startIndex int, result *[][]int, subResult *[]int) {
+	temp := make([]int, len(*subResult))
+	copy(temp, *subResult)
+	*result = append(*result, temp)
 	if startIndex >= len(nums) {
 		return
 	}
 
 	for i := startIndex; i < len(nums); i++ {
-		*temp = append(*temp, nums[i])
-		subsetsBacktracking(nums, i+1, result, temp)
-		*temp = (*temp)[:len(*temp)-1]
+		*subResult = append(*subResult, nums[i])
+		subsetsBacktracking(nums, i+1, result, subResult)
+		*subResult = (*subResult)[:len(*subResult)-1]
 	}
 }

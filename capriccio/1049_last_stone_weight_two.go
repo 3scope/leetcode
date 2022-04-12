@@ -24,6 +24,7 @@ func lastStoneWeightII(stones []int) int {
 		}
 	}
 
+	// The weight of other is greater than target.
 	other := sum - dp[target]
 	return other - dp[target]
 }

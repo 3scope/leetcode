@@ -18,7 +18,7 @@ func partitionBacktracking(s string, startIndex int, result *[][]string, temp *[
 	}
 
 	for i := startIndex; i < len(s); i++ {
-		if isPalindrome(string(s[startIndex : i+1])) {
+		if isPalindromeString(string(s[startIndex : i+1])) {
 			*temp = append(*temp, string(s[startIndex:i+1]))
 			partitionBacktracking(s, i+1, result, temp)
 			*temp = (*temp)[:len(*temp)-1]
@@ -28,7 +28,7 @@ func partitionBacktracking(s string, startIndex int, result *[][]string, temp *[
 	}
 }
 
-func isPalindrome(s string) bool {
+func isPalindromeString(s string) bool {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		if s[i] != s[j] {
 			return false
