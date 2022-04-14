@@ -2,38 +2,42 @@ package main
 
 func generateMatrix(n int) [][]int {
 	result := make([][]int, n)
-	for i := range result {
+	for i := 0; i < n; i++ {
 		result[i] = make([]int, n)
 	}
+	leftTop := []int{0, 0}
+	rightBottom := []int{n - 1, n - 1}
 
-	level := n / 2
-	count := 1
-	for i := 0; i < level; i++ {
+	num := 1
+	for leftTop[0] < rightBottom[0] && leftTop[1] < rightBottom[1] {
 		// Top edge.
-		for j := i; j < n-i-1; j++ {
-			result[i][j] = count
-			count++
+		for i := leftTop[1]; i < rightBottom[1]; i++ {
+			result[leftTop[0]][i] = num
+			num++
 		}
 		// Right edge.
-		for j := i; j < n-i-1; j++ {
-			result[j][n-i-1] = count
-			count++
+		for i := leftTop[0]; i < rightBottom[0]; i++ {
+			result[i][rightBottom[1]] = num
+			num++
 		}
 		// Bottom edge.
-		for j := n - i - 1; j > i; j-- {
-			result[n-i-1][j] = count
-			count++
+		for i := rightBottom[1]; i > leftTop[1]; i-- {
+			result[rightBottom[0]][i] = num
+			num++
 		}
 		// Left edge.
-		for j := n - i - 1; j > i; j-- {
-			result[j][i] = count
-			count++
+		for i := rightBottom[0]; i > leftTop[0]; i-- {
+			result[i][leftTop[1]] = num
 		}
-
+		leftTop[0]++
+		leftTop[1]++
+		rightBottom[0]--
+		rightBottom[1]--
 	}
 
 	if n%2 == 1 {
-		result[n/2][n/2] = n * n
+		result[leftTop[0]][leftTop[1]] = num
 	}
+
 	return result
 }

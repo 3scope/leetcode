@@ -17,3 +17,22 @@ func maxSubArray(nums []int) int {
 	}
 	return result
 }
+
+func maxSubArrayDP(nums []int) int {
+	dp := make([]int, len(nums))
+	dp[0] = nums[0]
+	result := dp[0]
+	max := func(x, y int) int {
+		if x > y {
+			return x
+		} else {
+			return y
+		}
+	}
+	for i := 1; i < len(nums); i++ {
+		dp[i] = max(nums[i], dp[i-1]+nums[i])
+		result = max(result, dp[i])
+	}
+
+	return result
+}

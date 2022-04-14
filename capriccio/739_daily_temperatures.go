@@ -6,6 +6,7 @@ func dailyTemperatures(temperatures []int) []int {
 	// Push the element with index 0 into the stack.
 	// To store the index.
 	stack := make([]int, 1)
+	stack[0] = 0
 	for i := 1; i < len(temperatures); i++ {
 		if temperatures[i] < temperatures[stack[len(stack)-1]] {
 			stack = append(stack, i)

@@ -1,16 +1,10 @@
 package main
 
 func nextGreaterElement(nums1 []int, nums2 []int) []int {
-	getIndex := make(map[int]int)
-	// To store the index of number in nums1.
-	for i := 0; i < len(nums1); i++ {
-		getIndex[nums1[i]] = i
-	}
-
 	// To set the default result number.
-	result := make([]int, len(nums1))
+	subResult := make(map[int]int)
 	for i := 0; i < len(nums1); i++ {
-		result[i] = -1
+		subResult[nums1[i]] = -1
 	}
 
 	stack := make([]int, 1, 8)
@@ -25,12 +19,15 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 			for len(stack) > 0 && nums2[i] > stack[len(stack)-1] {
 				ele := stack[len(stack)-1]
 				stack = stack[:len(stack)-1]
-				if index, ok := getIndex[ele]; ok {
-					result[index] = nums2[i]
-				}
+				subResult[ele] = nums2[i]
 			}
 			stack = append(stack, nums2[i])
 		}
+	}
+
+	result := make([]int, len(nums1))
+	for i := 0; i < len(nums1); i++ {
+		result[i] = subResult[nums1[i]]
 	}
 
 	return result

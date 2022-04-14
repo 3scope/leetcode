@@ -27,6 +27,7 @@ func findLengthOfLCIS(nums []int) int {
 	for i := 0; i < len(nums); i++ {
 		dp[i] = 1
 	}
+	// Need to find max.
 	result := 1
 	for i := 1; i < len(nums); i++ {
 		if nums[i] > nums[i-1] {
