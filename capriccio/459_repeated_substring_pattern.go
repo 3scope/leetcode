@@ -1,12 +1,12 @@
 package main
 
 func repeatedSubstringPattern(s string) bool {
-	// If the string length is one, the substring of it is null.
+	// 如果原字符串的长度小于2，则它的子串为空，因此直接返回“false”。
 	if len(s) == 1 || len(s) == 0 {
 		return false
 	}
 	next := GetPrefixNext(s)
-	// If the last digit of the next is zero, then prove that the string is not repeated.
+	// “next”数组的最后一个元素为0，证明这个字符串没有重复的子串。
 	if next[len(s)-1] != 0 && len(s)%(len(s)-next[len(s)-1]) == 0 {
 		return true
 	} else {
@@ -29,7 +29,7 @@ func KMP(haystack string, pattern string) int {
 		} else {
 			j = next[j-1]
 		}
-		// Match successfully.
+		// 如果在循环中，匹配上了所有的字符，那么证明匹配成功，返回此时的起始值。
 		if j == len(pattern) {
 			return i - j
 		}
@@ -54,9 +54,11 @@ func GetPrefixNext(pattern string) []int {
 			i++
 			j++
 		} else if j == 0 {
+			// 此时证明 Next 数组在该位置上的值为0，即没有相等的前后缀。
 			prefixNext[i] = 0
 			i++
 		} else {
+			// Next 数组就是为了存放不匹配时，下一步需要和模式串中的哪个位置的字符比较。
 			j = prefixNext[j-1]
 		}
 	}

@@ -9,11 +9,9 @@ func combine(n int, k int) [][]int {
 
 func combineBacktracking(n, k, index int, result *[][]int, temp *[]int) {
 	if len(*temp) == k {
-		new := make([]int, k)
-		for i := 0; i < k; i++ {
-			new[i] = (*temp)[i]
-		}
-		*result = append(*result, new)
+		t := make([]int, k)
+		copy(t, *temp)
+		*result = append(*result, t)
 		return
 	}
 

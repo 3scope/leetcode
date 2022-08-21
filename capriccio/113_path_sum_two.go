@@ -13,6 +13,7 @@ func pathSum(root *TreeNode, targetSum int) [][]int {
 }
 
 func getPathSum(root *TreeNode, targetSum int, path *[]int, result *[][]int) {
+	// 递归的终止条件。
 	if root.Left == nil && root.Right == nil {
 		if targetSum == 0 {
 			temp := make([]int, len(*path))

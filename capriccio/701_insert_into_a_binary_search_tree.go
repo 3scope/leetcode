@@ -1,6 +1,7 @@
 package main
 
 func insertIntoBST(root *TreeNode, val int) *TreeNode {
+	// 插入节点到二叉搜索树的过程需要寻找“nil”节点。
 	if root == nil {
 		root = new(TreeNode)
 		root.Val = val

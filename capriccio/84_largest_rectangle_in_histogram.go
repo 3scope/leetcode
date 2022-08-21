@@ -6,7 +6,7 @@ func largestRectangleArea(heights []int) int {
 	} else if len(heights) == 1 {
 		return heights[0]
 	}
-	// Convert all cases to "small big small".
+	// 为了让所有的情况都会出现“低高低”的情况，在首尾插入两个0。
 	temp := []int{0}
 	heights = append(temp, heights...)
 	heights = append(heights, 0)

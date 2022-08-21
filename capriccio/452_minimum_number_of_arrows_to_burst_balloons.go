@@ -14,7 +14,6 @@ func findMinArrowShots(points [][]int) int {
 		if points[i][1] <= right {
 			// Greedy, use the mininum length of balloons.
 			right = points[i][1]
-			continue
 		} else if points[i][0] <= right {
 			continue
 		} else {

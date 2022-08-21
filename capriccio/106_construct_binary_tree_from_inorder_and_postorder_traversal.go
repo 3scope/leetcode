@@ -4,6 +4,7 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 	if len(postorder) == 0 {
 		return nil
 	}
+	// 先序遍历，先处理当前节点。
 	val := postorder[len(postorder)-1]
 	root := new(TreeNode)
 	root.Val = val

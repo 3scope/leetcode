@@ -1,53 +1,52 @@
 package main
 
 func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
-	sameNode := findNode(root, subRoot)
-	for i := 0; i < len(sameNode); i++ {
-		if compareNode(sameNode[i], subRoot) {
-			return true
-		}
+	// 特殊情况。
+	if subRoot == nil {
+		return true
 	}
+	// 终止条件。
+	if root == nil {
+		return false
+	}
+
+	// 先序遍历，首先判断当前节点作为根节点，是否能和 SubRoot 相等。
+	// 先判断以当前节点为根节点，之后判断左右孩子。
+	if compareSameTree(root, subRoot) {
+		return true
+	}
+	// 只要左右孩子中有一个满足条件，就证明子树中含有 SubRoot.
+	if isSubtree(root.Left, subRoot) {
+		return true
+	}
+	if isSubtree(root.Right, subRoot) {
+		return true
+	}
+
 	return false
 }
 
-func findNode(root, subRoot *TreeNode) []*TreeNode {
-	if root == nil {
-		return nil
-	}
-
-	// Preorder traversal.
-	subResult := make([]*TreeNode, 0)
-	if root.Val == subRoot.Val {
-		subResult = append(subResult, root)
-	}
-	left := findNode(root.Left, subRoot)
-	if left != nil {
-		subResult = append(subResult, left...)
-	}
-	right := findNode(root.Right, subRoot)
-	if right != nil {
-		subResult = append(subResult, right...)
-	}
-
-	return subResult
-}
-
-func compareNode(p *TreeNode, q *TreeNode) bool {
+func compareSameTree(p, q *TreeNode) bool {
+	// 终止条件。
 	if p == nil && q == nil {
 		return true
 	}
 
-	// Preorder traversal.
-	if p == nil && q != nil {
+	// 先序遍历，判断当前的连个节点。
+	if p == nil {
 		return false
-	} else if p != nil && q == nil {
+	} else if q == nil {
 		return false
 	} else if p.Val != q.Val {
 		return false
 	}
+	// 比较子节点，当不相同时可以直接返回。
+	if !compareSameTree(p.Left, q.Left) {
+		return false
+	}
+	if !compareSameTree(p.Right, q.Right) {
+		return false
+	}
 
-	left := compareNode(p.Left, q.Left)
-	right := compareNode(p.Right, q.Right)
-
-	return left && right
+	return true
 }

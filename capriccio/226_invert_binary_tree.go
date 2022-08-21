@@ -1,34 +1,23 @@
 package main
 
 func invertTree(root *TreeNode) *TreeNode {
-	// Do nothing.
-	if root == nil {
-		return root
-	}
-	root.Left, root.Right = root.Right, root.Left
-	invertTree(root.Left)
-	invertTree(root.Right)
-
-	return root
-}
-
-func invertTreeIteration(root *TreeNode) *TreeNode {
+	// 特殊情况。
 	if root == nil {
 		return nil
 	}
-	stack := make([]*TreeNode, 1)
-	stack[0] = root
-	for len(stack) > 0 {
-		cur := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		if cur.Right != nil {
-			stack = append(stack, cur.Left)
-		}
-		if cur.Left != nil {
-			stack = append(stack, cur.Right)
-		}
-		cur.Left, cur.Right = cur.Right, cur.Left
-	}
 
+	preorderInvert(root)
 	return root
+}
+
+func preorderInvert(root *TreeNode) {
+	// 递归终止条件。
+	if root == nil {
+		return
+	}
+	// 先序遍历。
+	root.Left, root.Right = root.Right, root.Left
+	// 虽然左右孩子更换了位置，但是先序遍历还没有遍历孩子，所以不会造成重复。
+	preorderInvert(root.Left)
+	preorderInvert(root.Right)
 }

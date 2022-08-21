@@ -6,10 +6,10 @@ func nextGreaterElements(nums []int) []int {
 		result[i] = -1
 	}
 
-	stack := make([]int, 1, 8)
+	stack := make([]int, 1)
 	stack[0] = 0
-	// Iterate over each element twice.
-	for i := 0; i < 2*len(result); i++ {
+	// 由于是循环数组，那么遍历两遍，即可找到所有的结果。
+	for i := 0; i < 2*len(nums); i++ {
 		index := stack[len(stack)-1]
 		if nums[i%len(nums)] < nums[index] {
 			stack = append(stack, i%len(nums))

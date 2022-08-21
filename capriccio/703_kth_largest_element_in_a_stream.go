@@ -13,6 +13,7 @@ func (k KthLargest) Len() int {
 }
 
 func (k KthLargest) Less(i, j int) bool {
+	// 构建小根堆，“i”作为下标比“j”大，当“Data[i]”比“Data[j]”小的时候，交换两者位置。
 	return k.Data[i] < k.Data[j]
 }
 
