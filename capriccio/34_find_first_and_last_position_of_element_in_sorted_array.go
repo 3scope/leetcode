@@ -1,29 +1,37 @@
 package main
 
+// 二分查找，首先找到“target”出现的最左边的位置，之后找到第一个比“target”大的数出现的位置。
 func searchRange(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return []int{-1, -1}
 	}
-	result := make([]int, 2)
-	result[0], result[1] = -1, -1
-	left, right := 0, len(nums)-1
-	for left <= right {
-		mid := (left + right) / 2
-		if nums[mid] == target {
-			result[0] = mid
-			right = mid - 1
-		} else if nums[mid] > target {
-			right = mid - 1
+	leftIndex, ok := searchBinaryLeft(nums, target)
+	if !ok {
+		return []int{-1, -1}
+	}
+	// “target+1”如果不存在也会返回第一个大于“target”值所在的位置。
+	rightIndex, _ := searchBinaryLeft(nums, target+1)
+
+	return []int{leftIndex, rightIndex - 1}
+}
+
+// “bool”类型返回值代表值是否存在，“int”类型返回值代表位置的下标。
+func searchBinaryLeft(nums []int, target int) (int, bool) {
+	left := 0
+	right := len(nums)
+	isExisted := false
+	// 只有当“left == right”才会跳出循环。
+	for left < right {
+		middle := left + (right-left)/2
+		// 找到“target”出现的最小下标。
+		if nums[middle] >= target {
+			right = middle
 		} else {
-			left = mid + 1
+			left = middle + 1
+		}
+		if nums[middle] == target {
+			isExisted = true
 		}
 	}
-
-	if result[0] != -1 {
-		for i := result[0]; i < len(nums) && nums[i] == target; i++ {
-			result[1] = i
-		}
-	}
-
-	return result
+	return left, isExisted
 }
