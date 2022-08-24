@@ -3,24 +3,14 @@ package main
 // 设计带有头尾指针的链表，并且提供链表长度，可以在O(1)的时间复杂度得到链表长度。
 type MyLinkedList struct {
 	Head   *ListNode
-	Tail   *ListNode
 	Length int
 }
 
-// 单链表节点。
+// 单链表节点，LeetCode上报错可能是重复定义。
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
-
-// func Constructor() MyLinkedList {
-// 	list := new(MyLinkedList)
-// 	// 初始化。
-// 	list.Length = 0
-// 	list.Head = new(ListNode)
-// 	list.Tail = list.Head
-// 	return *list
-// }
 
 // 通过下标得到节点值，下标从0开始。
 func (this *MyLinkedList) Get(index int) int {
@@ -30,8 +20,7 @@ func (this *MyLinkedList) Get(index int) int {
 	}
 	// “node”从头开始遍历。
 	node := this.Head
-	temp := index
-	for ; temp >= 0; temp-- {
+	for i := index; i >= 0; i-- {
 		node = node.Next
 	}
 	return node.Val
@@ -59,8 +48,12 @@ func (this *MyLinkedList) AddAtTail(val int) {
 	node := new(ListNode)
 	node.Val = val
 	// 尾插法更新 Tail 指针。
-	this.Tail.Next = node
-	this.Tail = node
+	pre := this.Head
+	// 寻找索引值为“Length-1”的节点，即最后一个节点。
+	for i := this.Length - 1; i >= 0; i-- {
+		pre = pre.Next
+	}
+	pre.Next = node
 	this.Length++
 }
 
@@ -75,11 +68,9 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 		node.Val = val
 		// 查找前驱节点。
 		pre := this.Head
-		temp := index
-		for ; temp > 0; temp-- {
+		for i := index; i > 0; i-- {
 			pre = pre.Next
 		}
-
 		node.Next = pre.Next
 		pre.Next = node
 		this.Length++
@@ -92,15 +83,8 @@ func (this *MyLinkedList) DeleteAtIndex(index int) {
 	if index < this.Length && index >= 0 {
 		// 找到删除节点的前驱节点。
 		pre := this.Head
-		// 需要存储“index”的值，因为之后需要使用。
-		temp := index
-		for ; temp > 0; temp-- {
+		for i := index; i > 0; i-- {
 			pre = pre.Next
-		}
-
-		// 如果删除的是尾节点，则需要更新 Tail 的值。
-		if index == (this.Length - 1) {
-			this.Tail = pre
 		}
 		pre.Next = pre.Next.Next
 		this.Length--

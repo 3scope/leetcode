@@ -6,7 +6,7 @@ func minSubArrayLen(target int, nums []int) int {
 	sum := 0
 	// 不存在就返回0，因此初始化为0。
 	result := 0
-	// 左指针指向窗口的第一个值，右指针指向窗口的最后一个值的下一个。
+	// 左指针指向窗口的第一个值，右指针指向窗口的最后一个值的下一个，即左闭右开区间。
 	left := 0
 	right := 0
 	// 当右指针指向最后一个元素的下一个时，右指针就不能继续右移了。
@@ -20,6 +20,7 @@ func minSubArrayLen(target int, nums []int) int {
 			sum -= nums[left]
 			left++
 		} else if sum < target {
+			// 处理边界条件，当“right”指针到底之后，就会出现“out of index”。
 			if right < len(nums) {
 				sum += nums[right]
 			}
