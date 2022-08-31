@@ -4,6 +4,7 @@ import "sort"
 
 // 首先可以将数组排序，之后通过排序后的下标，找出哪些数字比当前数字要小。
 func smallerNumbersThanCurrent(nums []int) []int {
+	// 首先对原数组排序，存放到一个新的数组，排序后数字在数组中的下标就表示有多少个数字比自己小。
 	temp := make([]int, len(nums))
 	copy(temp, nums)
 	sort.Ints(temp)
