@@ -2,26 +2,30 @@ package main
 
 func combine(n int, k int) [][]int {
 	result := make([][]int, 0)
-	temp := make([]int, 0)
-	combineBacktracking(n, k, 1, &result, &temp)
+	subResult := make([]int, 0)
+	combineBacktracking(n, k, 1, &result, &subResult)
 	return result
 }
 
-func combineBacktracking(n, k, index int, result *[][]int, temp *[]int) {
-	if len(*temp) == k {
+// 变量“n, k, index”构成了回溯过程中，每一层的取值范围。
+func combineBacktracking(n, k, index int, result *[][]int, subResult *[]int) {
+	// 收集结果。
+	if len(*subResult) == k {
 		t := make([]int, k)
-		copy(t, *temp)
+		copy(t, *subResult)
 		*result = append(*result, t)
 		return
 	}
 
-	if (n-index+1)+len(*temp) < k {
+	// 剪枝操作。
+	if (n-index+1)+len(*subResult) < k {
 		return
 	}
 
 	for i := index; i <= n; i++ {
-		*temp = append(*temp, i)
-		combineBacktracking(n, k, i+1, result, temp)
-		*temp = (*temp)[:len(*temp)-1]
+		*subResult = append(*subResult, i)
+		combineBacktracking(n, k, i+1, result, subResult)
+		// 进行回溯。
+		*subResult = (*subResult)[:len(*subResult)-1]
 	}
 }
